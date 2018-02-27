@@ -12,8 +12,8 @@ app = Flask(__name__)
 @app.route('/webhook', methods=['POST'])
 def webhook():
     #req = request.get_json(silent=False, force=False)
-    #req = request.get_json(force=True)
-    req = request.form.to_dict()
+    req = request.get_json(force=True)
+    #req = request.form.to_dict()
     print(json.dumps(req, indent=4))
     #req = json.dumps(req)
     
@@ -30,15 +30,14 @@ def makeResponse(req):
     """
     if req.get("result").get("action") != "fetchWeatherForecast":
         return {}
-    
+    """
     result = req.get("result")
     parameters = result.get("parameters")
     city = parameters.get("geo-city")
     date = parameters.get("date")
-    """
 
-    city = req['result']['parameters']['geo-city']
-    date = req['result']['parameters']['date']
+    #city = req['result']['parameters']['geo-city']
+    #date = req['result']['parameters']['date']
     #city = req['geo-city']
     #date = req['date']
 
